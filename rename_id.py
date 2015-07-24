@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 import os
 import re
-for filename in os.listdir("."):
-    filename_split = filename.split()
-    if len(filename_split) > 2:
-        newfilename = filename_split[len(filename_split) - 1].upper()
-        for i in range(0, len(filename_split) - 1):
-            if filename_split[i] != "HD":
-                newfilename = newfilename + " " + filename_split[i]
-        if re.match("^[A-Z]+-[0-9]+", newfilename):
-            os.rename(filename, newfilename)
-        else:
-            print newfilename
+for dirname in os.listdir("."):
+    if os.path.isdir(dirname):
+        dirname_split = dirname.split()
+        if len(dirname_split) > 2:
+            newdirname = dirname_split[len(dirname_split) - 1].upper()
+            for i in range(0, len(dirname_split) - 1):
+                if dirname_split[i] != "HD":
+                    newdirname = newdirname + " " + dirname_split[i]
+            if re.match("^[A-Z]+-[0-9]+", newdirname):
+                os.rename(dirname, newdirname)
+            else:
+                print dirname + "cannot rename"
